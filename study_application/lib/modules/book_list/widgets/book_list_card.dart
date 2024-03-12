@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import '../../../theme/appTheme.dart';
 
-class BookListCard extends StatelessWidget {
+class BookListCard extends StatefulWidget {
   BookListCard({super.key, required this.bookTitle});
 
   String bookTitle;
 
+  @override
+  State<BookListCard> createState() => _BookListCardState();
+}
+
+class _BookListCardState extends State<BookListCard> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -51,7 +56,7 @@ class BookListCard extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(bookTitle,
+                              Text(widget.bookTitle,
                                   style: theme.textTheme.titleLarge),
                               Text(
                                 'Автор',
