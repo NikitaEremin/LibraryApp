@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:study_application/models/favorites.dart';
-import 'package:study_application/screens/favorites.dart';
+import 'package:study_application/screens/favorites_screen.dart';
 
 late Favorites favoritesList;
 
@@ -12,7 +12,7 @@ Widget createFavoritesScreen() => ChangeNotifierProvider<Favorites>(
     return favoritesList;
   },
   child: const MaterialApp(
-    home: FavoritesPage(),
+    home: FavoritesScreen(),
   ),
 );
 

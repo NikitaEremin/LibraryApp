@@ -3,10 +3,10 @@ import 'package:provider/provider.dart';
 
 import '../models/favorites.dart';
 
-class FavoritesPage extends StatelessWidget {
-  const FavoritesPage({super.key});
+class FavoritesScreen extends StatelessWidget {
+  const FavoritesScreen({super.key});
 
-  static String routeName = 'favorites_page';
+  static String routeName = 'favorites_screen';
 
   @override
   Widget build(BuildContext context) {

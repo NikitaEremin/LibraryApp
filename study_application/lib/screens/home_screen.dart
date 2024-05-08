@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:study_application/screens/counter_screen/counter_screen.dart';
 import '../models/favorites.dart';
-import 'favorites.dart';
+import 'favorites_screen.dart';
 
-class HomePage extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
   static String routeName = '/';
 
-  const HomePage({super.key});
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Testing Sample'),
+        title: const Text('Home screen'),
         actions: <Widget>[
           TextButton.icon(
             onPressed: () {
-              context.go('/${FavoritesPage.routeName}');
+              context.go('/${FavoritesScreen.routeName}');
             },
             icon: const Icon(Icons.favorite_border),
             label: const Text('Favorites'),
@@ -29,6 +30,12 @@ class HomePage extends StatelessWidget {
         cacheExtent: 20.0,
         padding: const EdgeInsets.symmetric(vertical: 16),
         itemBuilder: (context, index) => ItemTile(index),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          context.go('/${CounterScreen.routeName}');
+        },
+        label: const Text('To counter'),
       ),
     );
   }
