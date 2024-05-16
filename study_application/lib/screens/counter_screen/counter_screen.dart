@@ -4,10 +4,9 @@ import 'package:study_application/screens/counter_screen/counter_bloc/counter_sc
 import 'package:study_application/screens/counter_screen/items_bloc/items_bloc.dart';
 
 class CounterScreen extends StatelessWidget {
-  CounterScreen({super.key});
+  const CounterScreen({super.key});
 
   static String routeName = 'counter_page';
-
 
   @override
   Widget build(BuildContext context) {
@@ -38,15 +37,19 @@ class CounterScreen extends StatelessWidget {
                       style: textTheme.headlineMedium,
                     );
                   }),
-              BlocBuilder<ItemsBloc,ItemsState>(
+              BlocBuilder<ItemsBloc, ItemsState>(
                   bloc: itemsBloc,
                   builder: (BuildContext context, state) {
+                    final items = state.items;
+                    final status = state.status;
                     return Column(
                       children: [
-                        if(state is ItemsLoadingState)
+                        if (items.isEmpty && state.isLoading)
                           const CircularProgressIndicator(),
-                        if(state is ItemsLoadedState)
-                          ...state.items.map((e) => Text('${e.name} ${e.id}')),
+                        if (items.isNotEmpty)
+                          ...items.map((e) => Text('${e.name} ${e.id}')),
+                        if (status.isNotEmpty)
+                          ...status.map((e) => Text('${e.name} ${e.id}')),
                       ],
                     );
                   }),
@@ -77,6 +80,12 @@ class CounterScreen extends StatelessWidget {
                 itemsBloc.add(GetItems(counterBloc.state));
               },
               icon: const Icon(Icons.refresh),
+            ),
+            IconButton(
+              onPressed: () {
+                itemsBloc.add(GetStatus(counterBloc.state));
+              },
+              icon: const Icon(Icons.download),
             ),
           ],
         ),

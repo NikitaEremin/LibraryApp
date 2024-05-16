@@ -20,7 +20,7 @@ final router = GoRouter(
         GoRoute(
           path: CounterScreen.routeName,
           builder: (context, state) {
-            return CounterScreen();
+            return const CounterScreen();
           },
         ),
       ],
